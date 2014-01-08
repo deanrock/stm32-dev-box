@@ -16,5 +16,6 @@ Vagrant.configure('2') do |config|
       vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/cross-compiler", "1"]
 
       vb.customize ['modifyvm', :id, '--usb', 'on']
+      vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'STLink', '--vendorid', '0x0483', '--productid', '0x3748']
   end
 end
