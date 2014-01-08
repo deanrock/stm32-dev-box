@@ -9,9 +9,12 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder ".", "/home/vagrant/files"
 
   config.vm.provider :virtualbox do |vb|
-  		vb.customize ["modifyvm", :id, "--memory", "1024"]
-        vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/cross-compiler", "1"]
-  end
+                  vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "1"]
+      vb.customize ["modifyvm", :id, "--ioapic", "on"]  
 
-  config.vm.provision "shell", path: "bootstrap.sh"
+      vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/cross-compiler", "1"]
+
+      vb.customize ['modifyvm', :id, '--usb', 'on']
+  end
 end
